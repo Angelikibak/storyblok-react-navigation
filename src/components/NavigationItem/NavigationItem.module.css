@@ -1,0 +1,48 @@
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  min-width: 180px;
+  margin: 0;
+  padding: 8px;
+
+  list-style: none;
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  z-index: 10;
+}
+
+.item {
+  position: relative;
+  list-style: none;
+}
+
+.item:hover > .submenu {
+  display: block;
+}
+
+.submenu .submenu {
+  top: 0;
+  left: auto;
+  right: 100%;
+  margin-left: 0;
+  margin-right: 8px;
+}
+
+.link,
+.label {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.link:hover,
+.label:hover {
+  background: #f4f4f4;
+}
