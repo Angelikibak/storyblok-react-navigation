@@ -1,0 +1,46 @@
+.footer {
+  margin-top: 80px;
+  padding: 48px 40px 24px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  gap: 64px;
+}
+
+.columns {
+  display: flex;
+  gap: 80px;
+}
+
+.socialLinks {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 48px;
+  padding-top: 24px;
+
+  border-top: 1px solid #e5e5e5;
+}
+
+.copyright {
+  margin: 0;
+}
+
+.legalLinks {
+  display: flex;
+  gap: 24px;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

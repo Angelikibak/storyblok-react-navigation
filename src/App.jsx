@@ -1,18 +1,24 @@
 import { useStoryblok } from '@storyblok/react'
 import Header from './components/Header/Header.jsx'
+import Footer from './components/Footer/Footer'
 
 function App() {
-  const story = useStoryblok('header', {
+  const headerStory = useStoryblok('header', {
     version: 'draft',
   })
 
-  if (!story?.content) {
+  const footerStory = useStoryblok('footer', {
+    version: 'draft',
+  })
+
+  if (!headerStory?.content || !footerStory?.content){
     return <div>Loading...</div>
   }
 
   return (
     <div>
-      <Header header={story.content} />
+      <Header header={headerStory.content} />
+      <Footer footer={footerStory.content} />
     </div>
   )
 }

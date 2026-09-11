@@ -1,7 +1,12 @@
 import NavigationItem from '../NavigationItem/NavigationItem' 
 import styles from './Header.module.css'
+import Button from '../Button/Button'
 
 function Header({ header }) {
+
+  const cta = header.cta?.[0]
+  const ctaHref = cta?.link?.url || cta?.link?.cached_url
+
   return (
     <header className={styles.header}>
       <img
@@ -17,6 +22,15 @@ function Header({ header }) {
           ))}
         </ul>
       </nav>
+      
+      {cta && ctaHref && (
+        <div className={styles.cta}>
+          <Button
+            label={cta.label}
+            href={ctaHref}
+          />
+        </div>
+      )}
     </header>
   )
 }
