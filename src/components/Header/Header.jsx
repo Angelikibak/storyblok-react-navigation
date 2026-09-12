@@ -1,6 +1,7 @@
 import NavigationItem from '../NavigationItem/NavigationItem' 
 import styles from './Header.module.css'
 import Button from '../Button/Button'
+import { storyblokEditable } from '@storyblok/react'
 
 function Header({ header }) {
 
@@ -8,7 +9,8 @@ function Header({ header }) {
   const ctaHref = cta?.link?.url || cta?.link?.cached_url
 
   return (
-    <header className={styles.header}>
+    <header className={styles.header}
+            {...storyblokEditable(header)}>
       <img
         className={styles.logo}
         src={header.logo.filename}
@@ -22,9 +24,10 @@ function Header({ header }) {
           ))}
         </ul>
       </nav>
-      
+
       {cta && ctaHref && (
-        <div className={styles.cta}>
+        <div className={styles.cta}
+            {...storyblokEditable(cta)}>
           <Button
             label={cta.label}
             href={ctaHref}

@@ -1,9 +1,11 @@
 import FooterLink from '../FooterLink/FooterLink'
 import styles from './FooterColumn.module.css'
+import { storyblokEditable } from '@storyblok/react'
 
 function FooterColumn({ column }) {
   return (
-    <div className={styles.column}>
+    <div className={styles.column}
+         {...storyblokEditable(column)}>
       <h3>{column.title}</h3>
 
       <ul className={styles.links}>

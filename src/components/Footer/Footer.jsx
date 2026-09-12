@@ -2,12 +2,14 @@ import FooterColumn from '../FooterColumn/FooterColumn'
 import FooterLink from '../FooterLink/FooterLink'
 import SocialLink from '../SocialLink/SocialLink'
 import styles from './Footer.module.css'
+import { storyblokEditable } from '@storyblok/react'
 
 function Footer({ footer }) {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer}
+            {...storyblokEditable(footer)}>
       <div className={styles.top}>
         <div className={styles.columns}>
           {footer.columns.map((column) => (
