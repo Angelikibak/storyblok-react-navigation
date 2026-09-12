@@ -1,12 +1,30 @@
+import { useRef, useState } from 'react'
+import { storyblokEditable } from '@storyblok/react'
 import styles from './NavigationItem.module.css'
 
 function NavigationItem({ item }) {
+
+  const [isOpen, setIsOpen] = useState(false)
+  const closeTimer = useRef(null)
+  const handleMouseEnter = () => {
+    clearTimeout(closeTimer.current)
+  setIsOpen(true)
+  }
+  const handleMouseLeave = () => {
+  closeTimer.current = setTimeout(() => {
+    setIsOpen(false)
+  }, 500)
+}
+
   const href = item.link?.url || item.link?.cached_url
 
   const hasLink = Boolean(href)
 
   return (
-    <li className={styles.item}>
+    <li className={styles.item} 
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        {...storyblokEditable(item)}>
       {hasLink ? (
         <a
           className={styles.link}
@@ -21,7 +39,10 @@ function NavigationItem({ item }) {
       )}
 
       {item.children?.length > 0 && (
-        <ul className={styles.submenu}>
+        <ul className={`${styles.submenu} ${
+            isOpen ? styles.submenuOpen : ''
+          }`}
+        >
           {item.children.map((child) => (
             <NavigationItem key={child._uid} item={child} />
           ))}
