@@ -1,16 +1,110 @@
-# React + Vite
+# Recipe House
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Recipe House is a React and Vite project connected to Storyblok. It renders editable Storyblok content for the main page, including the header, teaser section, and footer, and is configured for Storyblok's Visual Editor during local development.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React
+- Vite
+- Storyblok React SDK
+- CSS Modules
+- ESLint
+- vite-plugin-mkcert for local HTTPS
 
-## React Compiler
+## Requirements
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js
+- npm
+- A Storyblok space with a preview access token
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Install the dependencies:
+
+```bash
+npm install
+```
+
+Create a local `.env` file and add your Storyblok preview access token:
+
+```bash
+VITE_STORYBLOK_ACCESS_TOKEN=your-preview-token
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+The project is configured to run locally over HTTPS:
+
+```text
+https://localhost:5173/
+```
+
+This is the URL to use in Storyblok's Visual Editor preview configuration. The older local SSL proxy setup on port `5174` is no longer needed.
+
+## Storyblok Content
+
+The app currently loads these Storyblok stories in draft mode:
+
+- `header`
+- `home`
+- `footer`
+
+The `home` story renders the first block in its `body` field as the page teaser. Header and footer content are managed separately so they can be edited in Storyblok and reused across the page.
+
+For the Visual Editor, make sure the preview URL in Storyblok points to:
+
+```text
+https://localhost:5173
+```
+
+If the Home story should load at the root of the site, set its real path in Storyblok to:
+
+```text
+/
+```
+
+## Available Scripts
+
+Run the local HTTPS dev server:
+
+```bash
+npm run dev
+```
+
+Create a production build:
+
+```bash
+npm run build
+```
+
+Run linting:
+
+```bash
+npm run lint
+```
+
+## Project Structure
+
+```text
+src/
+  components/
+    Button/
+    Footer/
+    FooterColumn/
+    FooterLink/
+    Header/
+    NavigationItem/
+    SocialLink/
+    Teaser/
+  App.jsx
+  main.jsx
+```
+
+## Notes
+
+- Keep `.env` local and do not commit Storyblok tokens.
+- Storyblok preview requires HTTPS, which is handled by `vite-plugin-mkcert`.
